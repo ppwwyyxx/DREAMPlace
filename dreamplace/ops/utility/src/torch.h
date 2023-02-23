@@ -9,10 +9,8 @@
 
 /// As torch may change the header inclusion conventions, it is better to manage
 /// it in a consistent way.
-#if TORCH_VERSION_MAJOR >= 1
+#if TORCH_VERSION_MAJOR > 1 || (TORCH_VERSION_MAJOR == 1 && TORCH_VERSION_MINOR >= 3)
 #include <torch/extension.h>
-
-#if TORCH_VERSION_MINOR >= 3
 
 #define DREAMPLACE_TENSOR_DATA_PTR(TENSOR, TYPE) \
   ((TENSOR.defined())? TENSOR.data_ptr<TYPE>() : nullptr)
